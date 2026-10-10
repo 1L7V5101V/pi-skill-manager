@@ -4,7 +4,7 @@
 
 ## 解决什么问题
 
-pi 启动时会把**所有** skill 的 `name + description` 渲染成 `<available_skills>` XML 块塞进 system prompt。93 个 skill 目录、63 个唯一名字时，这段元数据约 13768 字符（≈3900 token），每一回合都要重新付费，而其中大部分 skill 一年用不到一次。
+pi 启动时会把**所有** skill 的 `name + description` 渲染成 `<available_skills>` XML 块塞进 system prompt。装了二三十个 skill 时这段元数据轻松上千字符，每一回合都要重新付费，而其中大部分 skill 极少用到。
 
 官方提供的不常驻手段只有一个：在 `SKILL.md` 的 frontmatter 里写
 
@@ -59,7 +59,7 @@ disable-model-invocation: true
 `~/.pi/agent/skill-manager.json`：
 
 ```json
-{ "enabled": ["codebase-design", "find-skills", "git-commit"] }
+{ "enabled": ["git-commit", "find-skills"] }
 ```
 
 - `enabled` 是**白名单**：只有列出的 skill 会出现在 system prompt 里，其余全部被移除
